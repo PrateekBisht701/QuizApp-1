@@ -46,23 +46,25 @@ let correct = 0;
 let wrong = 0;
 const quesBox = document.getElementById('quesBox')
 const allInputs = document.querySelectorAll('.input')
+const submitBtn = document.getElementById('submit')
 
 const loadQuestion = () => {
 
     if(index == total) {
         endQuiz();
     }
-
-    const data = quizData[index]
-    quesBox.innerText = `${ index + 1 } ${ data.question }`
-    reset();
-    allInputs[0].nextElementSibling.innerText = data.a;
-    allInputs[1].nextElementSibling.innerText = data.b;
-    allInputs[2].nextElementSibling.innerText = data.c;
-    allInputs[3].nextElementSibling.innerText = data.d;
+    else{
+        const data = quizData[index]
+        quesBox.innerText = `${ index + 1 } ${ data.question }`
+        reset();
+        allInputs[0].nextElementSibling.innerText = data.a;
+        allInputs[1].nextElementSibling.innerText = data.b;
+        allInputs[2].nextElementSibling.innerText = data.c;
+        allInputs[3].nextElementSibling.innerText = data.d;
+    }
 }
 
-const submit = () => {
+submitBtn.addEventListener('click', () => {
     const data = quizData[index]
     const ans = getAnswer()
 
@@ -74,9 +76,8 @@ const submit = () => {
 
     index++
     loadQuestion()
-
     return;
-}
+})
 
 
 const getAnswer = () => {
